@@ -2,10 +2,9 @@ import datetime
 import random, string
 from flask_restful import Api, Resource
 from schemas import schemas
-from models.tables import Order as OrderModel
+from models.tables import Orders as OrderModel
 from flask import jsonify, request
 from models.tables import db
-
 
 
 def generate_order_id(length=10):
@@ -48,8 +47,6 @@ class OrderResource(Resource):
         if errors:
             return {"errors": errors}, 400
         
-
-        
         # Create a new Order instance
         new_order = OrderModel(
             order_id= generate_order_id(), # Generate a new unique order ID
@@ -60,8 +57,11 @@ class OrderResource(Resource):
             review=data.get('review')  # Optional field
         )
 
+        result = db.session.execute('select A.order_id,B.product_name,B.price,A.ordered_on from orders as A INNER JOIN products as B where A.product_name=B.product_name').first()
         db.session.add(new_order)
         db.session.commit()
 
         return {"response": {"order_id": new_order.order_id}}, 201
+
+    
 
