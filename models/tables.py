@@ -33,6 +33,6 @@ class Seller(db.Model):
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(200), nullable=False)
     created_at = db.Column(db.DateTime(timezone=True), server_default = func.now())
-    product = db.relationship('Product', backref = 'sellers')
+    # product = db.relationship('Product', backref = 'sellers')
 
     

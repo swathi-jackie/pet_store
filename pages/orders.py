@@ -2,7 +2,7 @@ import datetime
 import random, string
 from flask_restful import Api, Resource
 from schemas import schemas
-from models.tables import Order as OrderModel
+from models.tables import Orders as OrderModel
 from flask import jsonify, request
 from models.tables import db
 
