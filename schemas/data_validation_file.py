@@ -25,3 +25,12 @@ def validate_login_values():
 
     return parser.parse_args()
 
+def validate_product_data():
+    parser = reqparse.RequestParser()
+    parser.add_argument("product_name", type=non_empty_string, required = True, help="product name is required")
+    parser.add_argument("product_desc", type=non_empty_string, required = True, help="product desc is required")
+    parser.add_argument('product_img', type=str, required=False, help="URL for product image.")
+    parser.add_argument('price', type=non_empty_string, required=True, help="Price must be provided and should be an integer.")
+    parser.add_argument('seller_email', type=non_empty_string, required=True, help="Seller email cannot be blank and must be valid.")
+
+    return parser.parse_args()

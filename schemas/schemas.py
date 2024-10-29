@@ -11,7 +11,7 @@ class product_schema(Schema):
     product_desc = fields.String(required=True, allow_none=False)
     product_img = fields.String(required=True, allow_none=False)
     price = fields.Integer(required = True, allow_none =False)
-    seller_name = fields.String(required=False, allow_none=True)
+    seller_email = fields.String(required=False, allow_none=True)
 
 class order_schema(Schema):
     order_id = fields.UUID(required=True, allow_none=False,default=generate_order_id)  # UUID for order_id
